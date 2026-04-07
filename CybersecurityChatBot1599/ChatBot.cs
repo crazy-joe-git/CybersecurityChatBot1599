@@ -16,10 +16,14 @@ public class ChatBot
     public void AskUserName()
     {
         Console.Write("\nPlease enter your name: ");
-
         userName = Console.ReadLine();
 
-        Console.WriteLine($"\nWelcome, {userName}!");
+        Console.ForegroundColor = ConsoleColor.Cyan;
+
+        Console.WriteLine($"\nWelcome, {userName}! Let's learn about some cybersecurity tips.");
+
+        Console.ResetColor();
+
     }
 
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Media;
 
 //Handles chatbot logic and interaction
 public class ChatBot
@@ -8,6 +9,8 @@ public class ChatBot
     //Starts the chatbot program
     public void Start()
     {
+        PlayVoiceGreeting(); //Play welcome message
+
         UIHelper.DisplayHeader();
 
         AskUserName();
@@ -111,4 +114,17 @@ public class ChatBot
         }
     }
 
+    // Plays a welcome voice message
+    private void PlayVoiceGreeting()
+    {
+        try
+        {
+            SoundPlayer player = new SoundPlayer(welcome.wav);
+            player.PlaySync(); // Plays the audio synchronously
+        }
+        catch
+        {
+            UIHelper.TypeText("Bot: [Voice greeting not available]");
+        }
+    }
 }

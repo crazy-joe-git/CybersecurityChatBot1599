@@ -12,18 +12,27 @@ public class ChatBot
         AskUserName();
       }
 
-    //Prompts user for their name 
-    public void AskUserName()
-    {
-        Console.Write("\nPlease enter your name: ");
-        userName = Console.ReadLine();
+    // Prompts user for their name and validates input
+    private void AskUserName()
+        {
+            do
+            {
+                Console.Write("\nEnter your name: ");
+                userName = Console.ReadLine();
 
-        Console.ForegroundColor = ConsoleColor.Cyan;
+                // Check if input is empty or only spaces
+                if (string.IsNullOrWhiteSpace(userName))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Name cannot be empty. Please try again.");
+                    Console.ResetColor();
+                }
 
-        Console.WriteLine($"\nWelcome, {userName}! Let's learn about some cybersecurity tips.");
+            } while (string.IsNullOrWhiteSpace(userName));
 
-        Console.ResetColor();
-
-    }
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"\nWelcome, {userName}! Let's learn about cybersecurity.");
+            Console.ResetColor();
+        }
 
 }

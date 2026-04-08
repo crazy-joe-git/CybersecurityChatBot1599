@@ -62,22 +62,22 @@ public class ChatBot
     {
         if (string.IsNullOrWhiteSpace(userInput))
         {
-            Console.WriteLine("Bot: Please enter something.");
+            UIHelper.TypeText("Bot: Please enter something.");
         }
         else if (userInput.Contains("how are you"))
         {
-            Console.WriteLine($"Bot: I'm functioning perfectly, {userName}!");
+            UIHelper.TypeText($"Bot: I'm functioning perfectly, {userName}!");
         }
         else if (userInput.Contains("purpose"))
         {
-            Console.WriteLine("Bot:As a Cybersecurity Awareness Assistant, my purpose is to guide users through realistic scenarios where they may encounter cyber threats and help them make safe, informed decisions. I simulate everyday situations such as suspicious emails, unsafe links, or requests " +
+            UIHelper.TypeText("Bot: As a Cybersecurity Awareness Assistant, my purpose is to guide users through realistic scenarios where they may encounter cyber threats and help them make safe, informed decisions. I simulate everyday situations such as suspicious emails, unsafe links, or requests " +
                                 "for personal information, allowing users to learn by actively engaging rather than passively reading. Through these interactions, I provide clear explanations, immediate feedback, and practical advice on topics like phishing, password security, and iden" +
                                 "tifying online scams. My goal is not only to inform but to build users’ confidence and critical thinking skills, " +
                                 "enabling them to recognize risks and protect themselves effectively in the digital world..");
         }
         else if (userInput.Contains("password"))
         {
-            Console.WriteLine("Bot: Passwords are one of the most important ways to protect your personal information online, as they act like a lock that keeps your accounts secure. " +
+            UIHelper.TypeText("Bot: Passwords are one of the most important ways to protect your personal information online, as they act like a lock that keeps your accounts secure. " +
                 "A weak password makes it easy for hackers to guess or break into your accounts using automated tools that try thousands of combinations in seconds. " +
                 "Simple passwords such as “password123,” your name, or your date of birth are very risky because they are easy to predict." +
                 "\r\n\r\nTo stay safe, you should create strong passwords that are long and include a mix of uppercase letters, lowercase letters, numbers, and special characters. " +
@@ -89,7 +89,7 @@ public class ChatBot
         }
         else if (userInput.Contains("phishing"))
         {
-            Console.WriteLine("Bot: Phishing emails are carefully designed fake messages created by cybercriminals to trick you into giving away sensitive information such as passwords, banking details, or personal data. " +
+            UIHelper.TypeText("Bot: Phishing emails are carefully designed fake messages created by cybercriminals to trick you into giving away sensitive information such as passwords, banking details, or personal data. " +
                 "These emails often pretend to come from trusted organisations like your bank, a delivery company, or even your school. They may use logos, official-looking language, and email addresses that look almost real to gain your trust." +
                 " A common trick used in phishing emails is creating a sense of urgency or fear, for example saying “Your account has been locked” or “You must verify your details immediately.” This pressure is meant to make you act quickly without thinking." +
                 "\r\n\r\nAs your Cybersecurity Awareness Assistant, I advise you to slow down and carefully examine any email before taking action. Check the sender’s email address closely, as fake emails often have small spelling differences. Look out for poor grammar, unusual requests, or links that do not match the official website." +
@@ -98,7 +98,7 @@ public class ChatBot
         }
         else if (userInput.Contains("safe browsing") || userInput.Contains("suspicious links"))
         {
-            Console.WriteLine("Bot:Suspicious links are one of the most common ways cybercriminals trick people into visiting harmful websites. " +
+            UIHelper.TypeText("Bot::Suspicious links are one of the most common ways cybercriminals trick people into visiting harmful websites. " +
                 "These links may appear in emails, text messages, social media posts, or pop-up ads. At first glance, they may look safe or familiar, but they often lead to fake websites that are designed to steal your personal information or infect your device with malware." +
                 "\r\n\r\nOne common trick is to slightly change the spelling of a well-known website, such as replacing letters or adding extra words (for example, “faceb00k-login.com” instead of the real site). Some links are also shortened using tools, which makes it difficult to see the actual destination. " +
                 "Others may promise rewards, prizes, or urgent actions to get you to click quickly without thinking.\r\n\r\nAs your Cybersecurity Awareness Assistant, I advise you to always pause before clicking on any link. If possible, hover over the link to see the full web address and check if it matches the official website. " +
@@ -107,7 +107,7 @@ public class ChatBot
         }
         else
         {
-            Console.WriteLine("Bot: I don’t understand that. Could you rephrase?");
+            UIHelper.TypeText("Bot: I don’t understand that. Could you rephrase?");
         }
     }
 

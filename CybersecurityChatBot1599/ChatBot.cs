@@ -4,7 +4,7 @@ using System.Media;
 //Handles chatbot logic and interaction
 public class ChatBot
 {
-    private string userName;
+    private string userName = string.Empty;
 
     //Starts the chatbot program
     public void Start()
@@ -20,26 +20,26 @@ public class ChatBot
 
     // Prompts user for their name and validates input
     private void AskUserName()
+    {
+        do
         {
-            do
+            Console.Write("\nEnter your name: ");
+            userName = Console.ReadLine() ?? string.Empty;
+
+            // Check if input is empty or only spaces
+            if (string.IsNullOrWhiteSpace(userName))
             {
-                Console.Write("\nEnter your name: ");
-                userName = Console.ReadLine();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Name cannot be empty. Please try again.");
+                Console.ResetColor();
+            }
 
-                // Check if input is empty or only spaces
-                if (string.IsNullOrWhiteSpace(userName))
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Name cannot be empty. Please try again.");
-                    Console.ResetColor();
-                }
+        } while (string.IsNullOrWhiteSpace(userName));
 
-            } while (string.IsNullOrWhiteSpace(userName));
-
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"\nWelcome, {userName}! Let's learn about cybersecurity.");
-            Console.ResetColor();
-        }
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine($"\nWelcome, {userName}! Let's learn about cybersecurity.");
+        Console.ResetColor();
+    }
 
     private void OperateChatbot()
     {
@@ -47,7 +47,7 @@ public class ChatBot
         {
             // Chatbot logic
             Console.Write("\nYou: ");
-            string userInput = Console.ReadLine().ToLower();
+            string userInput = (Console.ReadLine() ?? string.Empty).ToLowerInvariant();
 
             if (userInput == "exit")
             {
@@ -117,14 +117,21 @@ public class ChatBot
     // Plays a welcome voice message
     private void PlayVoiceGreeting()
     {
-        try
+        string soundFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"greeting.wav");
+        if (File.Exists(soundFilePath))
         {
-            SoundPlayer player = new SoundPlayer(welcome.wav);
-            player.PlaySync(); // Plays the audio synchronously
+            using (SoundPlayer player = new SoundPlayer(soundFilePath))
+            {
+                player.PlaySync(); // Play the sound synchronously
+            }
         }
-        catch
+        else
         {
-            UIHelper.TypeText("Bot: [Voice greeting not available]");
+            //Output error message if the sound file is missing
+            Console.WriteLine($"[ERROR] greeting.wav not found at: {soundFilePath}");
+
+            UIHelper.TypeText("[System] Welcome voice file missing. Text-only mopde active.");
         }
+
     }
 }

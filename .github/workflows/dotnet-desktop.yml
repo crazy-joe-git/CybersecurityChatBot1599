@@ -63,7 +63,7 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     
     - name: Run E-Bot
-      run: dotnet run --project CybersecurityChatbot1599.csproj
+      run: dotnet run --project CybersecurityChatbot1599/CybersecurityChatbot1599.csproj
     
     - name: Publish artifact
       run: dotnet publish --configuration Release --output ./publish

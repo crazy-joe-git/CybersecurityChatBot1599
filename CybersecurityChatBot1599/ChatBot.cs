@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Design;
 using System.Media;
 
 //Handles chatbot logic and interaction
@@ -14,8 +15,40 @@ public class ChatBot
         UIHelper.DisplayHeader();
 
         AskUserName();
+        
+        DisplayMenu();
+        
+    OperateChatbot(); //Start the chat loop
+    }
 
-        OperateChatbot(); //Start the chat loop
+    // Displays the menu of available topics
+    private void DisplayMenu()
+    {
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine("\n" + new string('=', 60));
+        Console.WriteLine("                    AVAILABLE TOPICS");
+        Console.WriteLine(new string('=', 60));
+        Console.ResetColor();
+
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine("┌────────────────────────────────────────────────────────┐");
+        Console.WriteLine("│  # │ TOPIC              │ WHAT YOU CAN ASK             │");
+        Console.WriteLine("├────────────────────────────────────────────────────────┤");
+        Console.WriteLine("│ 1  │ How are you        │ 'how are you'                │");
+        Console.WriteLine("│ 2  │ Purpose            │ 'purpose'                    │");
+        Console.WriteLine("│ 3  │ Cybersecurity      │ 'cybersecurity'              │");
+        Console.WriteLine("│ 4  │ Phishing           │ 'phishing'                   │");
+        Console.WriteLine("│ 5  │ Safe Browsing      │ 'safe browsing'              │");
+        Console.WriteLine("│ 6  │ Suspicious Links   │ 'suspicious links'           │");
+        Console.WriteLine("│ 7  │ Password Security  │ 'password'                   │");
+        Console.WriteLine("└────────────────────────────────────────────────────────┘");
+        Console.ResetColor();
+
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine("\n💡 TIP: Type 'exit' anytime to quit the program");
+        Console.WriteLine("💡 TIP: You can type full sentences containing these keywords");
+        Console.ResetColor();
+        Console.WriteLine(new string('=', 60));
     }
 
     // Prompts user for their name and validates input
@@ -26,7 +59,7 @@ public class ChatBot
             Console.Write("\nEnter your name: ");
             userName = Console.ReadLine() ?? string.Empty;
 
-            // Check if input is empty or only spaces
+            // Check if input is empty or only spaces (Exception handling for invalid input)
             if (string.IsNullOrWhiteSpace(userName))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -36,7 +69,7 @@ public class ChatBot
 
         } while (string.IsNullOrWhiteSpace(userName));
 
-        Console.ForegroundColor = ConsoleColor.Green;
+        Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine($"\nWelcome, {userName}! Let's learn about cybersecurity.");
         Console.ResetColor();
     }
@@ -65,22 +98,29 @@ public class ChatBot
     {
         if (string.IsNullOrWhiteSpace(userInput))
         {
-            UIHelper.TypeText("Bot: Please enter something.");
+            UIHelper.TypeText("\nPlease enter something.");
         }
         else if (userInput.Contains("how are you"))
         {
-            UIHelper.TypeText($"Bot: I'm functioning perfectly, {userName}!");
+            UIHelper.TypeText($"\nI'm functioning perfectly, {userName}!");
         }
+
+        else if (userInput.Contains("cybersecurity"))
+        {
+            UIHelper.TypeText($"\nHello, {userName}! Cybersecurity is the practice of protecting computers, servers, mobile devices," +
+                " electronic systems, networks, and data from digital attacks, damage, or unauthorized access.");
+        }
+
         else if (userInput.Contains("purpose"))
         {
-            UIHelper.TypeText("Bot: As a Cybersecurity Awareness Assistant, my purpose is to guide users through realistic scenarios where they may encounter cyber threats and help them make safe, informed decisions. I simulate everyday situations such as suspicious emails, unsafe links, or requests " +
+            UIHelper.TypeText($"\nNice to meet you, {userName}. As a Cybersecurity Awareness Assistant, my purpose is to guide users through realistic scenarios where they may encounter cyber threats and help them make safe, informed decisions. I simulate everyday situations such as suspicious emails, unsafe links, or requests " +
                                 "for personal information, allowing users to learn by actively engaging rather than passively reading. Through these interactions, I provide clear explanations, immediate feedback, and practical advice on topics like phishing, password security, and iden" +
                                 "tifying online scams. My goal is not only to inform but to build users’ confidence and critical thinking skills, " +
                                 "enabling them to recognize risks and protect themselves effectively in the digital world..");
         }
         else if (userInput.Contains("password"))
         {
-            UIHelper.TypeText("Bot: Passwords are one of the most important ways to protect your personal information online, as they act like a lock that keeps your accounts secure. " +
+            UIHelper.TypeText($"\n{userName} so, Passwords are one of the most important ways to protect your personal information online, as they act like a lock that keeps your accounts secure. " +
                 "A weak password makes it easy for hackers to guess or break into your accounts using automated tools that try thousands of combinations in seconds. " +
                 "Simple passwords such as “password123,” your name, or your date of birth are very risky because they are easy to predict." +
                 "\r\n\r\nTo stay safe, you should create strong passwords that are long and include a mix of uppercase letters, lowercase letters, numbers, and special characters. " +
@@ -92,7 +132,7 @@ public class ChatBot
         }
         else if (userInput.Contains("phishing"))
         {
-            UIHelper.TypeText("Bot: Phishing emails are carefully designed fake messages created by cybercriminals to trick you into giving away sensitive information such as passwords, banking details, or personal data. " +
+            UIHelper.TypeText($"\nSo {userName}, Phishing emails are carefully designed fake messages created by cybercriminals to trick you into giving away sensitive information such as passwords, banking details, or personal data. " +
                 "These emails often pretend to come from trusted organisations like your bank, a delivery company, or even your school. They may use logos, official-looking language, and email addresses that look almost real to gain your trust." +
                 " A common trick used in phishing emails is creating a sense of urgency or fear, for example saying “Your account has been locked” or “You must verify your details immediately.” This pressure is meant to make you act quickly without thinking." +
                 "\r\n\r\nAs your Cybersecurity Awareness Assistant, I advise you to slow down and carefully examine any email before taking action. Check the sender’s email address closely, as fake emails often have small spelling differences. Look out for poor grammar, unusual requests, or links that do not match the official website." +
@@ -101,16 +141,15 @@ public class ChatBot
         }
         else if (userInput.Contains("safe browsing") || userInput.Contains("suspicious links"))
         {
-            UIHelper.TypeText("Bot::Suspicious links are one of the most common ways cybercriminals trick people into visiting harmful websites. " +
+            UIHelper.TypeText($"\nOkay {userName}, Suspicious links are one of the most common ways cybercriminals trick people into visiting harmful websites. " +
                 "These links may appear in emails, text messages, social media posts, or pop-up ads. At first glance, they may look safe or familiar, but they often lead to fake websites that are designed to steal your personal information or infect your device with malware." +
                 "\r\n\r\nOne common trick is to slightly change the spelling of a well-known website, such as replacing letters or adding extra words (for example, “faceb00k-login.com” instead of the real site). Some links are also shortened using tools, which makes it difficult to see the actual destination. " +
                 "Others may promise rewards, prizes, or urgent actions to get you to click quickly without thinking.\r\n\r\nAs your Cybersecurity Awareness Assistant, I advise you to always pause before clicking on any link. If possible, hover over the link to see the full web address and check if it matches the official website. " +
-                "Be cautious of links that look unusual, contain random characters, or come from unknown sources. Avoid clicking on links that create urgency or seem too good to be true, such as winning a prize you did not enter for. Instead of clicking a link, it is safer to manually type the official website address into your browser. " +
                 "By being careful and observant, you can prevent hackers from gaining access to your personal information.");
         }
         else
         {
-            UIHelper.TypeText("Bot: I don’t understand that. Could you rephrase?");
+            UIHelper.TypeText($"\nI don’t understand that. Could you please rephrase, {userName}?");
         }
     }
 

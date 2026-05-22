@@ -1,16 +1,17 @@
 ﻿using System;
+using System.Windows;
 
-//Entry point of the application
-//This is where the program starts running
-
-class Program
+namespace CybersecurityChatBot1599
 {
-    static void Main()
+    class Program
     {
-      //Create chatbot object
-      ChatBot bot = new ChatBot();
+        [STAThread]
+        static void Main()
+        {
+            Application app = new Application();
+            MainWindow window = new MainWindow();
 
-      //Start chatbot
-      bot.Start();
+            app.Run(window);
+        }
     }
 }

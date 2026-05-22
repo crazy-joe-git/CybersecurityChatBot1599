@@ -37,8 +37,12 @@ Users can ask about:
 - Visual Studio 2022
 - GitHub Version Control
 
+
+
 This screenshot is to indicate that the application is running in a console window, showcasing the interactive chatbot interface and the various features implemented as described above:
 ![Screenshot_10-4-2026_114348_github com](https://github.com/user-attachments/assets/04803552-4838-48af-a783-8d3e3ae7d9af)
+
+
 
 Whereas the second screenshot demonstrates the application's ability to handle user input and provide responses based on predefined cybersecurity topics, showcasing the chatbot's functionality and user interaction flow:
 <img width="1771" height="1033" alt="image" src="https://github.com/user-attachments/assets/d582f1b1-2fa2-4e98-b9b5-69e12dbcfda1" />

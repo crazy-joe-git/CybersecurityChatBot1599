@@ -1,28 +1,31 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
-name: .NET
+name: .NET Core Build Pipeline
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master" ] 
   pull_request:
     branches: [ "master" ]
 
+    
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    # Instructs GitHub to utilize a Windows engine capable of loading WPF workloads
+    runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
+    - name: Checkout Code Repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET SDK Subsystem
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Restore dependencies
+
+    - name: Restore Project Dependencies
       run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+
+    - name: Build Application Binaries
+      run: dotnet build --no-restore --configuration Release

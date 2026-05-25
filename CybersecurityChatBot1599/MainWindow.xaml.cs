@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 
@@ -6,57 +6,57 @@ namespace CybersecurityChatBot1599
 {
     public partial class MainWindow : Window
     {
-        private readonly ChatBot _botEngine;
+        private readonly ChatBot _bot;
+        public ObservableCollection<ChatMessage> Messages { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
-            _botEngine = new ChatBot();
+            _bot = new ChatBot();
 
-            LoadInitialDashboardState();
-        }
+            Messages = new ObservableCollection<ChatMessage>();
+            ChatItemsControl.ItemsSource = Messages;
 
-        private void LoadInitialDashboardState()
-        {
-            ChatDisplayBox.Text = UIHelper.GetHeaderBanner();
-            ChatDisplayBox.AppendText("\nSystem: Please type your name in the input block below to initialize access.\n");
+            _bot.PlayVoiceGreeting();
 
-            _botEngine.PlayVoiceGreeting();
-        }
-
-        private void ExecuteMessageSubmission()
-        {
-            string input = InputField.Text.Trim();
-            if (string.IsNullOrWhiteSpace(input)) return;
-
-            InputField.Clear();
-
-            if (input.Equals("exit", StringComparison.OrdinalIgnoreCase))
+            // Initial startup instruction trigger
+            Messages.Add(new ChatMessage
             {
-                MessageBox.Show("Stay secure online. Closing communication channel.", "E-Bot Offline", MessageBoxButton.OK, MessageBoxImage.Information);
-                Application.Current.Shutdown();
-                return;
-            }
-
-            ChatDisplayBox.AppendText($"\nYou: {input}\n");
-
-            string reply = _botEngine.ProcessUserInput(input);
-
-            ChatDisplayBox.AppendText($"\n{reply}\n");
-            ChatDisplayBox.ScrollToEnd();
+                MessageText = "System Core Online. Please type your target name inside the control box input to initialize E-Bot core identity tracking modules.",
+                IsUser = false
+            });
         }
 
-        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        private void SendButton_Click(object sender, RoutedEventArgs e)
         {
-            ExecuteMessageSubmission();
+            ExecuteMessageExchange();
         }
 
-        private void InputField_KeyDown(object sender, KeyEventArgs e)
+        private void InputBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                ExecuteMessageSubmission();
+                ExecuteMessageExchange();
             }
+        }
+
+        private void ExecuteMessageExchange()
+        {
+            string rawInput = InputBox.Text;
+            if (string.IsNullOrWhiteSpace(rawInput)) return;
+
+            // 1. Render User Purple Pill Bubble
+            Messages.Add(new ChatMessage { MessageText = rawInput, IsUser = true });
+            InputBox.Clear();
+
+            // 2. Process AI Response
+            string systemOutput = _bot.ProcessUserInput(rawInput);
+
+            // 3. Render E-Bot Matte Gray Response Bubble
+            Messages.Add(new ChatMessage { MessageText = systemOutput, IsUser = false });
+
+            // 4. Trace View Tracking Downward
+            ChatScrollViewer.ScrollToEnd();
         }
     }
 }

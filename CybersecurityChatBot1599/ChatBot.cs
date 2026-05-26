@@ -1,20 +1,26 @@
-﻿using System;
+﻿using System.Media;
+using System;
 using System.Collections.Generic;
 
 namespace CybersecurityChatBot1599
 {
     public class ChatBot
     {
-        // Day 2 States
+        // Day 2 Core States
         private string _userName = "";
         private string _lastDiscussedTopic = "";
         private readonly Dictionary<string, List<string>> _knowledgeBase;
         private readonly Dictionary<string, int> _historyTracker;
         private readonly Random _randomProvider;
 
-        // Day 4 States: Multi-Stage Simulation Engine
+        // Day 4 Matrix States
         private bool _isSimulationActive = false;
         private int _currentScenarioStage = 0;
+
+        // 🌟 Day 5 Final States: Performance Scorecard Metrics
+        private int _simulationsPassed = 0;
+        private int _simulationsFailed = 0;
+        private int _totalQuestionsAsked = 0;
 
         public ChatBot()
         {
@@ -31,7 +37,20 @@ namespace CybersecurityChatBot1599
 
         public void PlayVoiceGreeting()
         {
-            // Optional voice greetings placeholder
+            try
+            {
+                // Tells the app to look for the file inside the running application folder
+                string audioPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "greeting.wav");
+
+                using (SoundPlayer player = new SoundPlayer(audioPath))
+                {
+                    player.Play(); // Plays the file smoothly without freezing the UI window
+                }
+            }
+            catch (Exception)
+            {
+                // Defensive safeguard: Prevents a crash if the file is missing or misplaced
+            }
         }
 
         public string ProcessUserInput(string rawInput)
@@ -39,24 +58,30 @@ namespace CybersecurityChatBot1599
             string cleanInput = rawInput.Trim();
             string lowerInput = cleanInput.ToLower();
 
-            // 1. Capture Identity Name Registration
+            // 1. Core Profile Name Setup
             if (string.IsNullOrEmpty(_userName))
             {
                 _userName = cleanInput;
-                return $"Access Granted, Agent {_userName}! Ask me about 'passwords', 'phishing', or 'scams' to begin core modules. Alternatively, type **SIMULATE** to launch a live-fire security test!";
+                return $"Access Granted, Agent {_userName}!\n\nType **/help** to view all available terminal commands, or type **SIMULATE** to begin your live-fire evaluation framework.";
             }
 
-            // 2. Intercept for Active Live-Fire Simulations
+            // 🌟 2. Day 5 System Command Matrix Interception
+            if (lowerInput.StartsWith("/"))
+            {
+                return HandleSystemCommands(lowerInput);
+            }
+
+            // 3. Simulation Overrides
             if (_isSimulationActive)
             {
                 return EvaluateSimulationChoice(lowerInput);
             }
 
-            // 3. Check for Simulation Initialization Trigger
+            // 4. Initialization Configuration Trigger
             if (lowerInput == "simulate" || lowerInput == "test")
             {
                 _isSimulationActive = true;
-                _currentScenarioStage = 1; // Set to Stage 1
+                _currentScenarioStage = 1;
                 return "🚨 **LIVE-FIRE THREAT SIMULATION: STAGE 1** 🚨\n\n" +
                        "**Scenario:** You receive an urgent email from 'IT-Support-Matrix' claiming your work password expires in 10 minutes. It includes a link: `http://update-your-matrix-credentials.com`.\n\n" +
                        "What do you do?\n" +
@@ -64,70 +89,101 @@ namespace CybersecurityChatBot1599
                        "👉 Type **2** to report the message to your security team.";
             }
 
-            // 4. Default Knowledge Retrieval Processing Pipeline
+            // 5. Base Module Information Processing
             foreach (var keyword in _knowledgeBase.Keys)
             {
                 if (lowerInput.Contains(keyword))
                 {
+                    _totalQuestionsAsked++;
                     _lastDiscussedTopic = keyword;
                     return GetRotatedTip(keyword);
                 }
             }
 
-            return $"Understood, Agent {_userName}. I filed that under our active observation logs. Type **SIMULATE** if you want to test your reflexes against a live hacker drill!";
+            return $"Observation logged, Agent {_userName}. Type **/help** to see what I can do, or type **SIMULATE** to test your defensive readiness scores.";
+        }
+
+        // 🌟 DAY 5 FEATURE: SYSTEM UTILITY COMMAND HANDLER
+        private string HandleSystemCommands(string command)
+        {
+            if (command == "/help")
+            {
+                return "📋 **E-BOT CORE TERMINAL COMMANDS** 📋\n\n" +
+                       "🔹 **SIMULATE** - Launches the multi-stage interactive threat scenario.\n" +
+                       "🔹 **/status** - Displays your real-time security performance scorecard.\n" +
+                       "🔹 **/topics** - Lists all cybersecurity categories built into my memory.\n" +
+                       "🔹 **password, phishing, scam** - Type these keywords directly for tips.";
+            }
+            if (command == "/status")
+            {
+                string rating = (_simulationsPassed > 0 && _simulationsFailed == 0) ? "🛡️ Certified Defender" : "⚠️ Vulnerable / Needs Training";
+                if (_simulationsPassed == 0 && _simulationsFailed == 0) rating = "⚪ Unrated (No tests completed)";
+
+                return "📊 **AGENT SECURITY SCORECARD** 📊\n\n" +
+                       $"👤 **Agent Identity:** {_userName}\n" +
+                       $"✅ **Simulations Passed:** {_simulationsPassed}\n" +
+                       $"❌ **Simulations Failed:** {_simulationsFailed}\n" +
+                       $"💬 **Total Research Inquiries:** {_totalQuestionsAsked}\n" +
+                       $"🎯 **Current Security Status:** {rating}";
+            }
+            if (command == "/topics")
+            {
+                return "📚 **AVAILABLE SECURITY KNOWLEDGE INTERFACES** 📚\n\n" +
+                       "You can ask me questions regarding these specific keywords:\n" +
+                       "🔒 **Password Security** (Type: password)\n" +
+                       "🎣 **Phishing Auditing** (Type: phishing)\n" +
+                       "💳 **Financial Fraud Scams** (Type: scam)";
+            }
+
+            return "❌ **Unknown System Command.** Type **/help** for a list of valid terminal operations.";
         }
 
         private string EvaluateSimulationChoice(string choice)
         {
-            // ==========================================
-            // EVALUATING STAGE 1: PHISHING EMAIL LINK
-            // ==========================================
             if (_currentScenarioStage == 1)
             {
                 if (choice == "1")
                 {
-                    _isSimulationActive = false; // Reset State
+                    _isSimulationActive = false;
                     _currentScenarioStage = 0;
+                    _simulationsFailed++; // Metric updated
                     return "❌ **SIMULATION FAILED AT STAGE 1** ❌\n\n" +
-                           "You clicked the phishing link! The domain was fake and used urgency to bypass your judgment. Your system has been compromised by dummy malware. Type **SIMULATE** to retry.";
+                           "You clicked the phishing link! Your system has been compromised by dummy malware. Type **/status** to see your scorecard updated.";
                 }
                 if (choice == "2")
                 {
-                    _currentScenarioStage = 2; // Advance State Machine to Stage 2!
+                    _currentScenarioStage = 2;
                     return "⚡ **STAGE 1 PASSED! Great Reflexes.** ⚡\n\n" +
-                           "Reporting the email lets IT block the threat corporate-wide. But the attacker isn't stopping...\n\n" +
                            "🚨 **LIVE-FIRE THREAT SIMULATION: STAGE 2** 🚨\n\n" +
-                           "**Scenario:** Later that afternoon, you walk into the corporate building elevator and spot an unlabelled USB flash drive sitting on the floor. A handwritten sticky note on it reads: *'Executive Salary Review 2026'*.\n\n" +
+                           "**Scenario:** You find an unlabelled USB flash drive sitting on the elevator floor with a sticky note reading: *'Executive Salary Review 2026'*.\n\n" +
                            "What do you do?\n" +
-                           "👉 Type **1** to plug it into your workstation privately to figure out who dropped it so you can return it.\n" +
-                           "👉 Type **2** to hand it over to the physical security desk without plugging it into anything.";
+                           "👉 Type **1** to plug it into your workstation to inspect it.\n" +
+                           "👉 Type **2** to hand it over to physical corporate security.";
                 }
-
-                return "⚠️ Invalid matrix selection. Please enter **1** or **2** to resolve Threat Simulation Stage 1.";
+                return "⚠️ Invalid matrix selection. Please enter **1** or **2**.";
             }
 
-            // ==========================================
-            // EVALUATING STAGE 2: PHYSICAL USB THREAT
-            // ==========================================
             if (_currentScenarioStage == 2)
             {
-                _isSimulationActive = false; // Simulation finishes after this evaluation (Pass or Fail)
+                _isSimulationActive = false;
                 _currentScenarioStage = 0;
 
                 if (choice == "1")
                 {
+                    _simulationsFailed++; // Metric updated
                     return "❌ **SIMULATION FAILED AT STAGE 2** ❌\n\n" +
-                           "Oh no! You plugged a mystery USB drive into a corporate network terminal! Attackers intentionally leave tempting drives in public spaces ('USB Drop Attacks'). The moment it was connected, it simulated a malicious keyboard attack to steal network tokens. Better luck next time!";
+                           "Oh no! You plugged a mystery USB drive into a network terminal, triggering a hardware exploit. Type **/status** to view your record.";
                 }
                 if (choice == "2")
                 {
+                    _simulationsPassed++; // Metric updated
                     return "🏆 **COMPLETION SUCCESSFUL: PERFECT SECURITY SCORE!** 🏆\n\n" +
-                           "Sensational work, Agent! By turning the drive in clean, you avoided a dangerous hardware-level exploit and kept your environment safe. You have successfully navigated the entire threat matrix!";
+                           "Sensational work! You successfully navigated the threat matrix safely. Check your updated record with **/status**!";
                 }
 
-                _isSimulationActive = true; // Restore state if invalid response
+                _isSimulationActive = true;
                 _currentScenarioStage = 2;
-                return "⚠️ Invalid matrix selection. Please enter **1** or **2** to resolve Threat Simulation Stage 2.";
+                return "⚠️ Invalid matrix selection. Please enter **1** or **2**.";
             }
 
             return "Error in simulation engine routing logs.";

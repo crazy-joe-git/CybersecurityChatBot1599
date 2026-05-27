@@ -22,7 +22,7 @@ namespace CybersecurityChatBot1599
             // Initial startup instruction trigger
             Messages.Add(new ChatMessage
             {
-                MessageText = "System Core Online. Please type your target name inside the control box input to initialize E-Bot core identity tracking modules.",
+                MessageText = "Welcome to CYBERSECURITY AWARENESS BOT. Please type your name to activate E-Bot.",
                 IsUser = false
             });
         }
@@ -45,17 +45,17 @@ namespace CybersecurityChatBot1599
             string rawInput = InputBox.Text;
             if (string.IsNullOrWhiteSpace(rawInput)) return;
 
-            // 1. Render User Purple Pill Bubble
+            //Render User Purple Pill Bubble
             Messages.Add(new ChatMessage { MessageText = rawInput, IsUser = true });
             InputBox.Clear();
 
-            // 2. Process AI Response
+            //Process AI Response
             string systemOutput = _bot.ProcessUserInput(rawInput);
 
-            // 3. Render E-Bot Matte Gray Response Bubble
+            //Render E-Bot Matte Gray Response Bubble
             Messages.Add(new ChatMessage { MessageText = systemOutput, IsUser = false });
 
-            // 4. Trace View Tracking Downward
+            //Trace View Tracking Downward
             ChatScrollViewer.ScrollToEnd();
         }
     }

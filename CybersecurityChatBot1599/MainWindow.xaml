@@ -33,8 +33,8 @@
                             <Ellipse Grid.Column="0" Width="36" Height="36" Fill="#8338EC"/>
                             <TextBlock Grid.Column="0" Text="🤖" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
                             <StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
-                                <TextBlock Text="Active Simulation" Foreground="White" FontWeight="SemiBold" FontSize="13"/>
-                                <TextBlock Text="E-Bot Assistant Engine" Foreground="#A0A0AB" FontSize="11" Margin="0,2,0,0"/>
+                                <TextBlock Text="E-BOT" Foreground="White" FontWeight="SemiBold" FontSize="13"/>
+                                <TextBlock Text="Assistant Engine" Foreground="#A0A0AB" FontSize="11" Margin="0,2,0,0"/>
                             </StackPanel>
                         </Grid>
                     </Border>
@@ -78,7 +78,7 @@
                             <TextBlock Text="🤖" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22"/>
                         </Grid>
                         <StackPanel VerticalAlignment="Center">
-                            <TextBlock Text="E-Bot Cyber" Foreground="White" FontWeight="Bold" FontSize="16"/>
+                            <TextBlock Text="CYBERSECURITY AWARENESS BOT" Foreground="White" FontWeight="Bold" FontSize="16"/>
                             <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
                                 <Ellipse Width="7" Height="7" Fill="#10B981" VerticalAlignment="Center" Margin="0,0,6,0"/>
                                 <TextBlock Foreground="#10B981" FontSize="12" FontWeight="Medium" Width="82" Height="17"><Run Text="Active "/><LineBreak/><Run/></TextBlock>
@@ -106,7 +106,7 @@
                                 </Grid>
 
                                 <Border x:Name="BubbleBorder" Grid.Column="1" CornerRadius="18" Padding="16,10,16,10" MaxWidth="480">
-                                    <TextBlock Text="{Binding MessageText}" Foreground="White" FontSize="14.5" TextWrapping="Wrap" LineHeight="20"/>
+                                    <TextBlock Text="{Binding MessageText}"  Foreground="White" FontFamily="Consolas" FontSize="11" TextWrapping="Wrap" LineHeight="15"/>
                                 </Border>
                             </Grid>
 

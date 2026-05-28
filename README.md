@@ -39,11 +39,13 @@ The chatbot automatically intercepts core administrative instructions starting w
 ### Part 1: Initial Console Prototype Baseline
 The historical command-line execution setup, displaying baseline layout logic validation before migrating to modern desktop containers:
 
-![Console Chat Screenshot Placeholder](https://github.com/user-attachments/assets/04803552-4838-48af-a783-8d3e3ae7d9af)
+![Console Chat Screenshot](https://github.com/user-attachments/assets/04803552-4838-48af-a783-8d3e3ae7d9af)
 
 <img width="1771" height="1033" alt="Legacy Input Processing" src="https://github.com/user-attachments/assets/d582f1b1-2fa2-4e98-b9b5-69e12dbcfda1" />
 
 ### Part 2: Upgraded High-Fidelity WPF GUI Layout
 The newly completed graphical environment showcasing interactive text bubbles, the legacy ASCII title rendering cleanly via `UIHelper`, and live responses from the performance scorecard matrices:
 
-<img width="1771" height="1033" alt="Legacy Input Processing" src="C:\Users\Student\Pictures\Screenshots\Screenshot 2026-05-28 151130.png" />
+![E-Bot Modern WPF Interface](Screenshot%202026-05-28%20151130.png)
+
+

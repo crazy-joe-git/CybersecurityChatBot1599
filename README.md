@@ -1,50 +1,49 @@
 # CybersecurityChatBot1599 (E-Bot)
 
 ## Overview
-The Cybersecurity Awareness Bot is a C# console application developed in Visual Studio 2022 using .NET 8. It is designed to educate users about basic online safety practices through an interactive chatbot experience.
+The Cybersecurity Awareness Bot (E-Bot) is a high-fidelity, modern desktop chat application developed in C# using Windows Presentation Foundation (WPF) and .NET 8. Migrated from a legacy text-based console framework, this intelligent security assistant is designed to train and evaluate users on critical online defense vectors through real-time communication, utility command parsing, and live threat simulations.
 
-The application welcomes the user, asks for their name, and allows them to ask questions related to cybersecurity topics.
+E-Bot combines responsive graphic styling with an underlying state machine engine to create an educational, secure training hub.
 
-## Features
-- Voice greeting when the application starts
-- ASCII art title screen
-- Personalized welcome message
-- Interactive chatbot conversation
-- Input validation for empty entries
-- Typing effect for realistic responses
-- Colorful and structured console interface
+## Key Features
+* **Modern Dark-Mode UI:** A premium, custom-styled graphical chat interface featuring distinct message bubbles (royal purple for users, sleek matte gray for the bot) alongside an administrative historical navigation sidebar.
+* **Decoupled Retro ASCII Art:** Retains the classic console heritage banner extracted from `UIHelper.cs`, dynamically aligned and rendered inside the GUI layout using crisp monospace text scaling.
+* **Native Audio Engine:** Integrates native, asynchronous playback of a local `greeting.wav` file upon application startup without freezing or introducing latency into the UI render pipeline.
+* **Interactive Live-Fire Simulation Matrix:** Implements an advanced, multi-tier state machine that transitions users away from basic chatting into live cybersecurity scenarios (e.g., automated phishing email evaluations and physical corporate USB drops).
+* **Persistent Performance Scorecard:** Telemetry tracking engine that logs user answers, tallies passed/failed simulation nodes, updates total search inquiries, and outputs a real-time security readiness rating profile.
+* **Terminal Slash Command System:** Intercepts system commands (such as `/help`, `/status`, and `/topics`) to query database matrices and display diagnostic panels directly inside the chat environment.
 
-## Cybersecurity Topics Covered
-Users can ask about:
+## Cybersecurity Infrastructure Covered
+Users can interact directly with the knowledge database or explore simulations regarding:
+* **Password Architecture:** Enforcement of passphrases over single words, token hygiene, and credential reuse vulnerability data.
+* **Phishing Audits:** Recognition of urgent terminology, suspicious email link domains, and corporate social engineering tactics.
+* **Financial Fraud & Scams:** Identifying illegitimate tech support operations, crypto giveaways, and gift card extortion tricks.
 
-- Password safety
-- Phishing scams
-- Safe browsing
-- Suspicious links
-- Chatbot purpose
-- General greetings
-
-## How to Use
-1. Run the application.
-2. Listen to the welcome greeting.
-3. Enter your name.
-4. Ask cybersecurity-related questions.
-5. Type `exit` to close the application.
+## System Commands Terminal Menu
+The chatbot automatically intercepts core administrative instructions starting with a forward slash (`/`):
+* `SIMULATE` / `TEST` - Disrupts the idle loop and launches the interactive defensive scenario mode.
+* `/help` - Displays the available navigation commands and utility keyword directives.
+* `/status` - Prints the user's real-time Agent Security Scorecard, displaying past milestones, inquiries count, and current defensive tier.
+* `/topics` - Outputs all security knowledge interfaces natively mapped within E-Bot's memory arrays.
 
 ## Technologies Used
-- C#
-- .NET 8
-- Visual Studio 2022
-- GitHub Version Control
+* **Languages:** C#
+* **Frameworks:** .NET 8.0, Windows Presentation Foundation (WPF)
+* **Development Environment:** Visual Studio 2022
+* **Version Control & DevSecOps:** Git, GitHub, Automated GitHub Actions CI/CD Build Engine Pipeline
 
+---
 
+## Visual Presentation & Interface Evolution
 
-This screenshot is to indicate that the application is running in a console window, showcasing the interactive chatbot interface and the various features implemented as described above:
-![Screenshot_10-4-2026_114348_github com](https://github.com/user-attachments/assets/04803552-4838-48af-a783-8d3e3ae7d9af)
+### Part 1: Initial Console Prototype Baseline
+The historical command-line execution setup, displaying baseline layout logic validation before migrating to modern desktop containers:
 
+![Console Chat Screenshot Placeholder](https://github.com/user-attachments/assets/04803552-4838-48af-a783-8d3e3ae7d9af)
 
+<img width="1771" height="1033" alt="Legacy Input Processing" src="https://github.com/user-attachments/assets/d582f1b1-2fa2-4e98-b9b5-69e12dbcfda1" />
 
-Whereas the second screenshot demonstrates the application's ability to handle user input and provide responses based on predefined cybersecurity topics, showcasing the chatbot's functionality and user interaction flow:
-<img width="1771" height="1033" alt="image" src="https://github.com/user-attachments/assets/d582f1b1-2fa2-4e98-b9b5-69e12dbcfda1" />
+### Part 2: Upgraded High-Fidelity WPF GUI Layout
+The newly completed graphical environment showcasing interactive text bubbles, the legacy ASCII title rendering cleanly via `UIHelper`, and live responses from the performance scorecard matrices:
 
-
+<img width="1771" height="1033" alt="Legacy Input Processing" src="C:\Users\Student\Pictures\Screenshots\Screenshot 2026-05-28 151130.png" />

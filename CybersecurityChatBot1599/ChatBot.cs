@@ -204,7 +204,7 @@ namespace CybersecurityChatBot1599
             string assignedTip = tips[targetedIndex];
 
             _historyTracker[category] = (targetedIndex + 1) % tips.Count;
-            return $"Security Advisor Trace [{category.ToUpper()}]: {assignedTip}";
+            return $"[{category.ToUpper()}]: {assignedTip}";
         }
     }
 }

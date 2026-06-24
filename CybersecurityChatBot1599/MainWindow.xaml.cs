@@ -14,15 +14,21 @@ namespace CybersecurityChatBot1599
             InitializeComponent();
             _bot = new ChatBot();
 
+            // Fire the startup audio greeting immediately when the UI framework loads
+            _bot.PlayStartupAudio();
+
             Messages = new ObservableCollection<ChatMessage>();
             ChatItemsControl.ItemsSource = Messages;
 
-            _bot.PlayVoiceGreeting();
+            // Fetch the ASCII art from UIHelper and combine it with the welcome message
+            string welcomeText = UIHelper.GetHeaderBanner() +
+                                 "\nWelcome to CYBERSECURITY AWARENESS BOT.\n" +
+                                 "Please type your name to activate E-Bot.";
 
-            // Initial startup instruction trigger
+            // Render the consolidated banner and greeting inside the first message bubble
             Messages.Add(new ChatMessage
             {
-                MessageText = "Welcome to CYBERSECURITY AWARENESS BOT. Please type your name to activate E-Bot.",
+                MessageText = welcomeText,
                 IsUser = false
             });
         }
@@ -45,17 +51,17 @@ namespace CybersecurityChatBot1599
             string rawInput = InputBox.Text;
             if (string.IsNullOrWhiteSpace(rawInput)) return;
 
-            //Render User Purple Pill Bubble
+            // Render User Purple Pill Bubble
             Messages.Add(new ChatMessage { MessageText = rawInput, IsUser = true });
             InputBox.Clear();
 
-            //Process AI Response
-            string systemOutput = _bot.ProcessUserInput(rawInput);
+            // Process AI Response
+            string systemOutput = _bot.GetResponse(rawInput);
 
-            //Render E-Bot Matte Gray Response Bubble
+            // Render E-Bot Matte Gray Response Bubble
             Messages.Add(new ChatMessage { MessageText = systemOutput, IsUser = false });
 
-            //Trace View Tracking Downward
+            // Trace View Tracking Downward
             ChatScrollViewer.ScrollToEnd();
         }
     }

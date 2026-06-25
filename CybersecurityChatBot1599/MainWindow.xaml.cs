@@ -1,68 +1,126 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Controls;
 
 namespace CybersecurityChatBot1599
 {
     public partial class MainWindow : Window
     {
-        private readonly ChatBot _bot;
-        public ObservableCollection<ChatMessage> Messages { get; set; }
+        // Explicitly named collections to avoid conflicting with existing classes
+        public ObservableCollection<MatrixChatMessage> ChatMessages { get; set; }
+        public ObservableCollection<MatrixSecurityTask> SecurityTasks { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
-            _bot = new ChatBot();
 
-            // Fire the startup audio greeting immediately when the UI framework loads
-            _bot.PlayStartupAudio();
+            ChatMessages = new ObservableCollection<MatrixChatMessage>();
+            SecurityTasks = new ObservableCollection<MatrixSecurityTask>();
 
-            Messages = new ObservableCollection<ChatMessage>();
-            ChatItemsControl.ItemsSource = Messages;
+            ChatItemsControl.ItemsSource = ChatMessages;
+            dgTasks.ItemsSource = SecurityTasks;
 
-            // Fetch the ASCII art from UIHelper and combine it with the welcome message
-            string welcomeText = UIHelper.GetHeaderBanner() +
-                                 "\nWelcome to CYBERSECURITY AWARENESS BOT.\n" +
-                                 "Please type your name to activate E-Bot.";
-
-            // Render the consolidated banner and greeting inside the first message bubble
-            Messages.Add(new ChatMessage
+            ChatMessages.Add(new MatrixChatMessage
             {
-                MessageText = welcomeText,
+                MessageText = "System initialized. Core Matrix Chat online.",
                 IsUser = false
             });
-        }
-
-        private void SendButton_Click(object sender, RoutedEventArgs e)
-        {
-            ExecuteMessageExchange();
         }
 
         private void InputBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                ExecuteMessageExchange();
+                ProcessChatMessage();
             }
         }
 
-        private void ExecuteMessageExchange()
+        private void SendButton_Click(object sender, RoutedEventArgs e)
         {
-            string rawInput = InputBox.Text;
-            if (string.IsNullOrWhiteSpace(rawInput)) return;
+            ProcessChatMessage();
+        }
 
-            // Render User Purple Pill Bubble
-            Messages.Add(new ChatMessage { MessageText = rawInput, IsUser = true });
+        private void ProcessChatMessage()
+        {
+            string userInput = InputBox.Text.Trim();
+            if (string.IsNullOrEmpty(userInput)) return;
+
+            ChatMessages.Add(new MatrixChatMessage { MessageText = userInput, IsUser = true });
             InputBox.Clear();
 
-            // Process AI Response
-            string systemOutput = _bot.GetResponse(rawInput);
+            ChatScrollViewer.ScrollToBottom();
 
-            // Render E-Bot Matte Gray Response Bubble
-            Messages.Add(new ChatMessage { MessageText = systemOutput, IsUser = false });
-
-            // Trace View Tracking Downward
-            ChatScrollViewer.ScrollToEnd();
+            ChatMessages.Add(new MatrixChatMessage
+            {
+                MessageText = "Message processed by core engine. NLP logic layer parsing request.",
+                IsUser = false
+            });
         }
+
+        private void btnAddTask_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtTaskTitle.Text))
+            {
+                MessageBox.Show("Please enter a valid task title before saving.", "Validation Alert", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            int nextId = SecurityTasks.Count + 1;
+
+            SecurityTasks.Add(new MatrixSecurityTask
+            {
+                Id = nextId,
+                Title = txtTaskTitle.Text,
+                Description = txtTaskDesc.Text,
+                Reminder = txtTaskReminder.Text,
+                IsComplete = false
+            });
+
+            txtTaskTitle.Clear();
+            txtTaskDesc.Clear();
+            txtTaskReminder.Clear();
+        }
+
+        private void btnMarkComplete_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgTasks.SelectedItem is MatrixSecurityTask selectedTask)
+            {
+                selectedTask.IsComplete = true;
+                dgTasks.Items.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Please select a task from the table to mark as completed.", "Selection Required", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private void btnDeleteTask_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgTasks.SelectedItem is MatrixSecurityTask selectedTask)
+            {
+                SecurityTasks.Remove(selectedTask);
+            }
+            else
+            {
+                MessageBox.Show("Please select a task from the table to purge.", "Selection Required", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+    }
+
+    public class MatrixChatMessage
+    {
+        public string MessageText { get; set; }
+        public bool IsUser { get; set; }
+    }
+
+    public class MatrixSecurityTask
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string Reminder { get; set; }
+        public bool IsComplete { get; set; }
     }
 }

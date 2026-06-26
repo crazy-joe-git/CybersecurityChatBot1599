@@ -4,25 +4,22 @@ using System.Linq;
 
 namespace CybersecurityChatBot1599
 {
-    /// <summary>
-    /// Handles all direct CRUD (Create, Read, Update, Delete) database operations for tasks.
-    /// Acts as the isolated gateway between the application and the physical database.db file.
-    /// </summary>
+    //Handles all direct CRUD (Create, Read, Update, Delete) database operations for tasks.
     public class TaskStorageHelper
     {
         private readonly ApplicationDbContext _db = new ApplicationDbContext();
 
-        /// <summary>
-        /// READ: Fetches all tracked security tasks currently saved inside the SQLite database.
-        /// </summary>
+       
+        // READ: Fetches all tracked security tasks currently saved inside the SQLite database.
+        
         public List<DbTask> LoadTasks()
         {
             return _db.Tasks.ToList();
         }
 
-        /// <summary>
-        /// CREATE: Builds a new task entity from raw string data and persists it directly to the database.
-        /// </summary>
+        
+        //CREATE: Builds a new task entity from raw string data and persists it directly to the database.
+       
         public void AddTask(string title, string description, string reminder)
         {
             DbTask newTask = new DbTask
@@ -37,9 +34,9 @@ namespace CybersecurityChatBot1599
             _db.SaveChanges(); // Saves the changes directly to the physical database file
         }
 
-        /// <summary>
-        /// UPDATE: Finds a specific task by its unique primary key ID and updates its completion state.
-        /// </summary>
+        
+        //UPDATE: Finds a specific task by its unique primary key ID and updates its completion state.
+        
         public void MarkAsComplete(int id)
         {
             DbTask task = _db.Tasks.FirstOrDefault(t => t.Id == id);

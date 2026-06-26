@@ -174,11 +174,11 @@ namespace CybersecurityChatBot1599
         {
             if (command == "/help")
             {
-                return "E-ASSISTANT CORE TERMINAL COMMANDS\n\n- SIMULATE - Launches the multi-stage interactive threat scenario.\n- /status - Displays your real-time security performance scorecard.\n- /topics - Lists all cybersecurity categories built into my memory.\n- password, phishing, scam, privacy - Type these keywords directly for tips.";
+                return "COMMANDS\n\n- SIMULATE - Launches the multi-stage interactive threat scenario.\n- /status - Displays your real-time security performance scorecard.\n- /topics - Lists all cybersecurity categories built into my memory.\n- password, phishing, scam, privacy - Type these keywords directly for tips.";
             }
             if (command == "/topics")
             {
-                return "E-ASSISTANT KNOWLEDGE ARRAYS\n\n1. Password Architecture\n2. Phishing Domain Audits\n3. Financial Fraud Detection\n4. Social Media Data Privacy Profile";
+                return " KNOWLEDGE ARRAYS\n\n1. Password Architecture\n2. Phishing Domain Audits\n3. Financial Fraud Detection\n4. Social Media Data Privacy Profile";
             }
             if (command == "/status")
             {

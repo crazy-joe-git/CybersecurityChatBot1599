@@ -51,4 +51,4 @@ The graphical environment showcasing interactive text bubbles, the legacy ASCII 
 ### Part 3: Interactive Quiz & Local Data Management
 The finalized, streamlined interactive interface featuring simple, real-world cybersecurity scenarios, explicit Green/Red feedback styling logic, and a fully decoupled SQLite Task Assistant backend.
 
-![E-Bot Part 3 Interactive Interface](Screenshot 2026-06-26 173714.png)
+![E-Bot Part 3 Interactive Interface](C:\Users\Student\OneDrive - ADvTECH Ltd\GitHub\CybersecurityChatBot1599\Screenshot 2026-06-26 173714.png)

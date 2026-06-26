@@ -35,7 +35,7 @@ namespace CybersecurityChatBot1599
             }
             catch
             {
-                // Swallowed to prevent crashes during presentation
+                
             }
         }
 
@@ -56,7 +56,7 @@ namespace CybersecurityChatBot1599
                 _isFirstMessage = false;
 
                 // Audio call removed from here since it now fires at app launch
-                return $"Welcome, {_userName}!\n\nType \"/help\" to view all available terminal commands, or type SIMULATE to begin your live-fire evaluation framework.";
+                return $"Welcome, {_userName}! \r\n\r\nGreat to have you here!\r\n\r\nI'm E-Bot, and my mission is to help you become smarter and safer online.\r\n\r\nWhether you're worried about phishing, scams, fake links, or password security, I'm here to guide you with practical tips and interactive learning.\r\n\r\nWhenever you're ready:\r\n• Type HELP to see everything I can do.\r\n• Type SIMULATE to test your cybersecurity skills in a realistic scenario.\r\n\r\nLet's get started and strengthen your cyber awareness! 🛡️";
             }
 
             if (cleanInput.StartsWith("/"))

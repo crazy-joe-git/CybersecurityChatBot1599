@@ -256,15 +256,51 @@
             </Grid>
         </TabItem>
 
-        <TabItem Header="Training Quiz">
-            <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-                <StackPanel HorizontalAlignment="Center">
-                    <TextBlock Text="CYBERSECURITY CHALLENGE TERMINAL" FontSize="22" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,10"/>
-                    <TextBlock Text="System configuration initialized. Interactive quiz logic pending phase deployment." Foreground="#626272" HorizontalAlignment="Center"/>
-                </StackPanel>
+        <TabItem Header="Training Quiz" Background="#0A0A0C" Foreground="#10B981">
+            <Grid Background="#0A0A0C" Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" BorderBrush="#10B981" BorderThickness="0,0,0,2" Padding="0,0,0,10" Margin="0,0,0,15">
+                    <Grid>
+                        <TextBlock Text="SEC_TRAINING // TERMINAL CHALLENGE" Foreground="#10B981" FontSize="18" FontWeight="Bold" FontFamily="Consolas"/>
+                        <TextBlock x:Name="TxtScore" Text="SCORE: 000" Foreground="#8338EC" FontSize="16" FontWeight="Bold" FontFamily="Consolas" HorizontalAlignment="Right"/>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Row="1" Background="#111115" BorderBrush="#8338EC" BorderThickness="1" Padding="15" Margin="0,0,0,20">
+                    <TextBlock x:Name="TxtQuestion" Text="Initializing training module..." Foreground="#FFFFFF" FontSize="14" TextWrapping="Wrap" FontFamily="Consolas" MinHeight="60"/>
+                </Border>
+
+                <Grid Grid.Row="2" Margin="0,0,0,15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="BtnOpt0" Grid.Row="0" Grid.Column="0" Content="Option 0" Margin="5" Padding="10" Background="#0A0A0C" Foreground="#10B981" BorderBrush="#10B981" FontFamily="Consolas" Click="OptionButton_Click" Tag="0"/>
+                    <Button x:Name="BtnOpt1" Grid.Row="0" Grid.Column="1" Content="Option 1" Margin="5" Padding="10" Background="#0A0A0C" Foreground="#10B981" BorderBrush="#10B981" FontFamily="Consolas" Click="OptionButton_Click" Tag="1"/>
+                    <Button x:Name="BtnOpt2" Grid.Row="1" Grid.Column="0" Content="Option 2" Margin="5" Padding="10" Background="#0A0A0C" Foreground="#10B981" BorderBrush="#10B981" FontFamily="Consolas" Click="OptionButton_Click" Tag="2"/>
+                    <Button x:Name="BtnOpt3" Grid.Row="1" Grid.Column="1" Content="Option 3" Margin="5" Padding="10" Background="#0A0A0C" Foreground="#10B981" BorderBrush="#10B981" FontFamily="Consolas" Click="OptionButton_Click" Tag="3"/>
+                </Grid>
+
+                <Border Grid.Row="3" Background="#111115" BorderBrush="#10B981" BorderThickness="1" Padding="10">
+                    <Grid>
+                        <TextBlock x:Name="TxtFeedback" Text="Select an answer to verify integrity." Foreground="#10B981" FontFamily="Consolas" VerticalAlignment="Center" TextWrapping="Wrap" Margin="0,0,120,0"/>
+                        <Button x:Name="BtnNext" Content="NEXT >" Width="100" HorizontalAlignment="Right" Background="#8338EC" Foreground="#FFFFFF" BorderBrush="#8338EC" FontFamily="Consolas" FontWeight="Bold" Visibility="Collapsed" Click="BtnNext_Click"/>
+                    </Grid>
+                </Border>
             </Grid>
         </TabItem>
-
+        
         <TabItem Header="Activity Audits">
             <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
                 <StackPanel HorizontalAlignment="Center">

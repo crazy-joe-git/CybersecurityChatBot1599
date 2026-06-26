@@ -280,10 +280,10 @@
                     </Grid.RowDefinitions>
 
 
-                    <Button x:Name="BtnOpt0" Grid.Row="0" Content="-" Margin="0,3,572,3" Height="36" Background="#1C1C24" Foreground="Silver" BorderBrush="MediumPurple" BorderThickness="1" HorizontalContentAlignment="Left" Padding="15,0,0,0" FontSize="13" FontFamily="Consolas" Tag="0" Click="OptionButton_Click"/>
-                    <Button x:Name="BtnOpt1" Grid.Row="3" Content="-" Margin="0,11,0,47" Height="36" Background="#1C1C24" Foreground="Silver" BorderBrush="MediumPurple" BorderThickness="1" HorizontalContentAlignment="Left" Padding="15,0,0,0" FontSize="13" FontFamily="Consolas" Tag="1" Click="OptionButton_Click" HorizontalAlignment="Left" Width="318"/>
-                    <Button x:Name="BtnOpt2" Grid.Row="3" Content="-" Margin="0,64,572,-6" Height="36" Background="#1C1C24" Foreground="Silver" BorderBrush="MediumPurple" BorderThickness="1" HorizontalContentAlignment="Left" Padding="15,0,0,0" FontSize="13" FontFamily="Consolas" Tag="2" Click="OptionButton_Click"/>
-                    <Button x:Name="BtnOpt3" Grid.Row="3" Content="-" Margin="0,118,572,-60" Height="36" Background="#1C1C24" Foreground="Silver" BorderBrush="MediumPurple" BorderThickness="1" HorizontalContentAlignment="Left" Padding="15,0,0,0" FontSize="13" FontFamily="Consolas" Tag="3" Click="OptionButton_Click"/>
+                    <Button x:Name="BtnOpt0" Grid.Row="0" Content="-" Margin="0,3,158,3" Height="36" Background="#1C1C24" Foreground="Silver" BorderBrush="MediumPurple" BorderThickness="1" HorizontalContentAlignment="Left" Padding="15,0,0,0" FontSize="13" FontFamily="Consolas" Tag="0" Click="OptionButton_Click"/>
+                    <Button x:Name="BtnOpt1" Grid.Row="3" Content="-" Margin="0,11,0,47" Height="36" Background="#1C1C24" Foreground="Silver" BorderBrush="MediumPurple" BorderThickness="1" HorizontalContentAlignment="Left" Padding="15,0,0,0" FontSize="13" FontFamily="Consolas" Tag="1" Click="OptionButton_Click" HorizontalAlignment="Left" Width="748"/>
+                    <Button x:Name="BtnOpt2" Grid.Row="3" Content="-" Margin="0,64,158,-6" Height="36" Background="#1C1C24" Foreground="Silver" BorderBrush="MediumPurple" BorderThickness="1" HorizontalContentAlignment="Left" Padding="15,0,0,0" FontSize="13" FontFamily="Consolas" Tag="2" Click="OptionButton_Click"/>
+                    <Button x:Name="BtnOpt3" Grid.Row="3" Content="-" Margin="0,118,158,-60" Height="36" Background="#1C1C24" Foreground="Silver" BorderBrush="MediumPurple" BorderThickness="1" HorizontalContentAlignment="Left" Padding="15,0,0,0" FontSize="13" FontFamily="Consolas" Tag="3" Click="OptionButton_Click"/>
                 </Grid>
 
                 <Grid Grid.Row="3">

@@ -205,7 +205,7 @@ namespace CybersecurityChatBot1599
                 Explanation = "Correct! Privacy defaults are often loose. Checking options ensures you don't inadvertently broadcast your personal data to public search engines."
             });
         }
-        
+
 
         private void DisplayCurrentQuestion()
         {
@@ -341,3 +341,4 @@ namespace CybersecurityChatBot1599
         public int CorrectOptionIndex { get; set; }
         public string Explanation { get; set; } = string.Empty;
     }
+}

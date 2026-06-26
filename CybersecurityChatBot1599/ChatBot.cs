@@ -16,10 +16,8 @@ namespace CybersecurityChatBot1599
         private bool _isFirstMessage = true;
         private bool _isInSimulationMode = false;
 
-        // Keep the player as a class member variable so it does not get garbage collected
         private SoundPlayer _startupPlayer;
 
-        // Public method to be called directly when the WPF Window launches
         public void PlayStartupAudio()
         {
             try
@@ -30,12 +28,12 @@ namespace CybersecurityChatBot1599
                 if (File.Exists(path))
                 {
                     _startupPlayer = new SoundPlayer(path);
-                    _startupPlayer.Play(); // Plays asynchronously without freezing the UI
+                    _startupPlayer.Play();
                 }
             }
             catch
             {
-                
+
             }
         }
 
@@ -49,14 +47,12 @@ namespace CybersecurityChatBot1599
             string cleanInput = userInput.Trim().ToLower();
             _queryCount++;
 
-            // Capture and store the user's name
             if (_isFirstMessage)
             {
                 _userName = userInput.Trim();
                 _isFirstMessage = false;
 
-                // Audio call removed from here since it now fires at app launch
-                return $"Welcome, {_userName}! \r\n\r\nGreat to have you here!\r\n\r\nI'm E-Bot, and my mission is to help you become smarter and safer online.\r\n\r\nWhether you're worried about phishing, scams, fake links, or password security, I'm here to guide you with practical tips and interactive learning.\r\n\r\nWhenever you're ready:\r\n• Type HELP to see everything I can do.\r\n• Type SIMULATE to test your cybersecurity skills in a realistic scenario.\r\n\r\nLet's get started and strengthen your cyber awareness! 🛡️";
+                return $"Welcome, {_userName}! \r\n\r\nGreat to have you here!\r\n\r\nI'm your E-Assistant, and my mission is to help you become smarter and safer online.\r\n\r\nWhether you're worried about phishing, scams, fake links, or password security, I'm here to guide you with practical tips and interactive learning.\r\n\r\nWhenever you're ready:\r\n• Type /help to see everything I can do.\r\n• Type SIMULATE to test your cybersecurity skills in a realistic scenario.\r\n\r\nLet's get started and strengthen your cyber awareness! 🛡️";
             }
 
             if (cleanInput.StartsWith("/"))
@@ -178,11 +174,11 @@ namespace CybersecurityChatBot1599
         {
             if (command == "/help")
             {
-                return "E-BOT CORE TERMINAL COMMANDS\n\n- SIMULATE - Launches the multi-stage interactive threat scenario.\n- /status - Displays your real-time security performance scorecard.\n- /topics - Lists all cybersecurity categories built into my memory.\n- password, phishing, scam, privacy - Type these keywords directly for tips.";
+                return "E-ASSISTANT CORE TERMINAL COMMANDS\n\n- SIMULATE - Launches the multi-stage interactive threat scenario.\n- /status - Displays your real-time security performance scorecard.\n- /topics - Lists all cybersecurity categories built into my memory.\n- password, phishing, scam, privacy - Type these keywords directly for tips.";
             }
             if (command == "/topics")
             {
-                return "E-BOT KNOWLEDGE ARRAYS\n\n1. Password Architecture\n2. Phishing Domain Audits\n3. Financial Fraud Detection\n4. Social Media Data Privacy Profile";
+                return "E-ASSISTANT KNOWLEDGE ARRAYS\n\n1. Password Architecture\n2. Phishing Domain Audits\n3. Financial Fraud Detection\n4. Social Media Data Privacy Profile";
             }
             if (command == "/status")
             {
